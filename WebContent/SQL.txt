@@ -1,0 +1,43 @@
+create table product0212(
+	id number(7) not null primary key,
+	category varchar2(10) not null,
+	wname varchar2(20) not null,
+	pname varchar2(20) not null,
+	sname varchar2(30),
+	price number(14),
+	downprice number(14),
+	inputdate date,
+	stock number(14),
+	description varchar2(80)
+); 
+
+insert into product0212 values(1000001,'22','관리자','카세트','(주)jsp',77000,80000,'2019-11-01',3,'카세트');
+insert into product0212 values(1000002,'55','홍길동','귀걸이','(주)jsp',35000,40000,'2019-11-01',3,'귀걸이세트');
+insert into product0212 values(1000003,'77','홍길순','데스크탑','(주)jsp',1850000,1900000,'2019-11-02',5,'컴퓨터관련');
+insert into product0212 values(1000004,'33','관리자','수저세트','(주)주방',240000,300000,'2019-11-02',5,'부엌용품');
+insert into product0212 values(1000005,'11','관리자','책상','(주)가구',340000,410000,'2019-11-02',5,'가구');
+
+
+drop table order0212;
+create table order0212(
+	id number(7) not null,
+	name varchar2(20) not null,
+	orderdate date,
+	addr varchar2(50) not null,
+	tel varchar2(13),
+	pay varchar2(10),
+	cardno varchar2(20),
+	prodcount number(14),
+	total number(14),
+	primary key(id,name)
+);
+
+select 
+	a.id,a.name,a.orderdate,a.addr,a.tel,a.pay,a.cardno,a.prodcount,b.price,a.total
+from
+	order0212 a, product0212 b
+where
+	a.id=b.id
+order by
+	id asc
+;
